@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Features — Maintor Industrial CMMS</title>
+  <meta name="description" content="Explore Maintor's dual-track maintenance workflows, mobile technician app, WhatsApp alerts, cross-account contractor collaboration, and real-time downtime tracking." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23FF5722'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='20' font-weight='800' font-family='sans-serif'>M</text></svg>" />
+
+  <style>
+    /* Features page–specific styles */
+    .feature-section-block {
+      padding: var(--section-py) 0;
+    }
+    .feature-section-block:nth-child(even) {
+      background: var(--slate);
+    }
+    .feature-block-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .feature-block-inner.reverse { direction: rtl; }
+    .feature-block-inner.reverse > * { direction: ltr; }
+    .feature-block-content {}
+    .feature-block-badge { margin-bottom: 16px; }
+    .feature-block-title { font-size: clamp(26px, 2.8vw, 38px); margin-bottom: 16px; }
+    .feature-block-desc { font-size: 16px; color: var(--text-muted-light); line-height: 1.75; margin-bottom: 28px; }
+    .feature-list { display: flex; flex-direction: column; gap: 12px; }
+    .feature-list-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 15px;
+    }
+    .feature-list-check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+    .feature-list-check.orange { background: var(--orange-dim); color: var(--orange); }
+    .feature-list-check.blue { background: var(--blue-dim); color: var(--blue); }
+    .feature-block-visual {
+      background: var(--coal);
+      border-radius: var(--r-xl);
+      padding: 40px;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .feature-block-visual::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,87,34,0.12) 0%, transparent 70%);
+    }
+    .feature-block-visual.blue-glow::before {
+      background: radial-gradient(circle, rgba(41,98,255,0.12) 0%, transparent 70%);
+    }
+    .visual-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 20px;
+    }
+    .visual-stat-large {
+      font-family: var(--font-heading);
+      font-size: 56px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .visual-stat-large span { color: var(--orange); }
+    .visual-stat-large.blue span { color: var(--blue-hover); }
+    .visual-stat-sub { font-size: 15px; color: var(--text-muted-dark); line-height: 1.5; }
+    .visual-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 24px; }
+    .visual-tag {
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .visual-tag.orange { background: var(--orange-dim); color: var(--orange); border-color: rgba(255,87,34,0.2); }
+    .visual-tag.blue { background: var(--blue-dim); color: var(--blue-hover); border-color: rgba(41,98,255,0.2); }
+    .visual-tag.green { background: rgba(37,211,102,0.1); color: var(--green-wa); border-color: rgba(37,211,102,0.2); }
+
+    @media (max-width: 900px) {
+      .feature-block-inner { grid-template-columns: 1fr; gap: 40px; }
+      .feature-block-inner.reverse { direction: ltr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="main-nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <div class="nav-logo-icon">M</div>
+        maintor<span class="nav-logo-dot">.</span>systems
+      </a>
+      <ul class="nav-links">
+        <li><a href="features.html" class="nav-link" style="color: var(--white);">Features</a></li>
+        <li><a href="industries.html" class="nav-link">Industries</a></li>
+        <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+        <li><a href="index.html#comparison" class="nav-link">Compare</a></li>
+      </ul>
+      <a href="index.html#cta" class="btn btn-primary nav-cta btn-sm">Request Early Access</a>
+      <button class="nav-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="features.html" class="nav-link">Features</a>
+      <a href="industries.html" class="nav-link">Industries</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="index.html#cta" class="btn btn-primary">Request Early Access</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner animate-on-scroll">
+        <span class="badge badge-orange" style="margin-bottom: 20px;">Platform Features</span>
+        <h1 class="page-hero-title">Two apps. One platform.<br/>Zero compromise.</h1>
+        <p class="page-hero-subtitle">
+          Maintor is purpose-engineered for industrial maintenance teams &mdash; not generic
+          IT asset management. A desktop command center for managers, and a mobile-first
+          field tool for technicians.
+        </p>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 32px;">
+          <a href="index.html#cta" class="btn btn-primary btn-lg">Request Early Access</a>
+          <a href="pricing.html" class="btn btn-secondary btn-lg">View Pricing</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- Feature 1: Admin Desktop -->
+    <section class="feature-section-block" id="admin-dashboard">
+      <div class="container">
+        <div class="feature-block-inner animate-on-scroll">
+          <div class="feature-block-content">
+            <div class="feature-block-badge">
+              <span class="badge badge-blue">Admin &amp; Supervisors</span>
+            </div>
+            <h2 class="feature-block-title">The Command Center for Maintenance Managers</h2>
+            <p class="feature-block-desc">
+              A comprehensive desktop-first dashboard that gives supervisors complete visibility
+              over their entire maintenance operation &mdash; across all sites, teams, and assets.
+            </p>
+            <ul class="feature-list">
+              <li class="feature-list-item">
+                <div class="feature-list-check blue">&#10003;</div>
+                <span>Scheduling calendar with recurring planned maintenance tasks and auto-assignment by role or skill</span>
+              </li>
+              <li class="feature-list-item">
+                <div class="feature-list-check blue">&#10003;</div>
+                <span>Filterable, sortable data tables for tickets, assets, and team members with custom column layouts</span>
+              </li>
+              <li class="feature-list-item">
+                <div class="feature-list-check blue">&#10003;</div>
+                <span>Granular role management: Owner, Admin, Site Manager, Supervisor, Technician, Consultant</span>
+              </li>
+              <li class="feature-list-item">
+                <div class="feature-list-check blue">&#10003;</div>
+                <span>Real-time breakdown dashboard with live downtime counters and assignee status</span>
+              </li>
+              <li class="feature-list-item">
+                <div class="feature-list-check blue">&#10003;</div>
+                <span>OEE and labor cost reports exportable as CSV or PDF for management review</span>
+              </li>
+            </ul>
+          </div>
+          <div class="feature-block-visual blue-glow">
+            <div class="visual-label">Admin Dashboard</div>
+            <div class="visual-stat-large blue"><span>12</span> / 15</div>
+            <div class="visual-stat-sub">Planned tasks completed today across 3 sites.<br/>3 active breakdown tickets in progress.</div>
+            <div class="visual-tags">
+              <span class="visual-tag blue">Scheduling Calendar</span>
+              <span class="visual-tag blue">Role Management</span>
+              <span class="visual-tag blue">OEE Reports</span>
+              <span class="visual-tag">Custom Columns</span>
+              <span class="visual-tag">Multi-site View</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 2: Mobile Technician -->
+    <section class="feature-section-block" id="technician-app">
+      <div class="container">
+        <div class="feature-block-inner reverse animate-on-scroll">
+          <div class="feature-block-content">
+            <div class="feature-block-badge">
+              <span class="badge badge-orange">Technicians &amp; Engineers</span>
+            </div>
+            <h2 class="feature-block-title">A Mobile App Technicians Actually Use</h2>
+            <p class="feature-block-desc">
+              The technician experience in most CMMS tools is an afterthought &mdash; a responsive
+              version of the desktop with too many menus and too much friction. Maintor&rsquo;s
+              mobile view is a separate, focused experience built entirely for field use.
+            </p>
+            <ul class="feature-list">
+              <li class="feature-list-item">
+                <div class="feature-list-check orange">&#10003;</div>
+                <span>Large tap targets and simplified navigation designed for gloved hands and bright outdoor conditions</span>
+              </li>
+              <li class="feature-list-item">
+                <div class="feature-list-check orange">&#10003;</div>
+                <span>Per-task photo capture directly from the checklist &mdash; each step requires its own verification photo</span>
+              </li>
+              <li class="feature-list-item">
+                <div class="feature-list-check orange">&#10003;</div>
+                <span>Offline-resilient: logs work locally and syncs when connectivity is restored</span>
+              </li>
+              <li class="feature-list-item">
+                <div class="feature-list-check orange">&#10003;</div>
+                <span>One-tap breakdown filing with mandatory asset selection and severity classification</span>
+              </li>
+              <li class="feature-list-item">
+                <div class="feature-list-check orange">&#10003;</div>
+                <span>Labor time tracking with start/stop timer per ticket, per technician</span>
+              </li>
+            </ul>
+          </div>
+          <div class="feature-block-visual">
+            <div class="visual-label">Technician App</div>
+            <div class="visual-stat-large"><span>95%</span></div>
+            <div class="visual-stat-sub">Target technician adoption rate. Most CMMS tools fail because technicians refuse to use them. Maintor&rsquo;s mobile UX is designed to change that.</div>
+            <div class="visual-tags">
+              <span class="visual-tag orange">Mobile-First</span>
+              <span class="visual-tag orange">Photo Upload</span>
+              <span class="visual-tag orange">Offline Mode</span>
+              <span class="visual-tag">Zero Training</span>
+              <span class="visual-tag">Labor Timer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 3: WhatsApp -->
+    <section class="feature-section-block" id="whatsapp-alerts">
+      <div class="container">
+        <div class="feature-block-inner animate-on-scroll">
+          <div class="feature-block-content">
+            <div class="feature-block-badge">
+              <span class="badge" style="background: rgba(37,211,102,0.1); color: var(--green-wa); border: 1px solid rgba(37,211,102,0.2);">WhatsApp Alerts</span>
+            </div>
+            <h2 class="feature-block-title">Real-Time Alerts on the Channel People Actually Check</h2>
+            <p class="feature-block-desc">
+              Email open rates in industrial settings are low. App push notifications get ignored.
+              WhatsApp messages get read in seconds &mdash; which is exactly why Maintor&rsquo;s
+              alert engine is built on it.
+            </p>
+            <ul class="feature-list">
+              <li class="feature-list-item">
+                <div class="feature-list-check" style="background: rgba(37,211,102,0.1); color: var(--green-wa);">&#10003;</div>
+                <span>Configurable recipient lists per site &mdash; send to specific supervisors or the whole on-call team</span>
+              </li>
+              <li class="feature-list-item">
+                <div class="feature-list-check" style="background: rgba(37,211,102,0.1); color: var(--green-wa);">&#10003;</div>
+                <span>Structured message templates with asset name, site, severity, filing technician, and a one-tap ticket link</span>
+              </li>
+              <li class="feature-list-item">
+                <div class="feature-list-check" style="background: rgba(37,211,102,0.1); color: var(--green-wa);">&#10003;</div>
+                <span>Alerts for both breakdown events and upcoming scheduled maintenance windows</span>
+              </li>
+              <li class="feature-list-item">
+                <div class="feature-list-check" style="background: rgba(37,211,102,0.1); color: var(--green-wa);">&#10003;</div>
+                <span>No app install required from supervisors &mdash; just a WhatsApp number</span>
+              </li>
+            </ul>
+          </div>
+          <div class="feature-block-visual" style="background: #0d1f17; border-color: rgba(37,211,102,0.1);">
+            <div class="visual-label" style="color: rgba(37,211,102,0.5);">Response Time Comparison</div>
+            <div class="visual-stat-large" style="color: white;">
+              <span style="color: var(--green-wa);">5</span> min
+            </div>
+            <div class="visual-stat-sub">
+              Maintor WhatsApp breakdown alert response time vs. <span style="color: rgba(255,255,255,0.55);">81 minute industry average</span> with email escalation. That&rsquo;s a 94% reduction.
+            </div>
+            <div class="visual-tags">
+              <span class="visual-tag green">WhatsApp Native</span>
+              <span class="visual-tag green">Breakdown Alerts</span>
+              <span class="visual-tag green">Planned Reminders</span>
+              <span class="visual-tag">No App Required</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 4: Collaboration -->
+    <section class="feature-section-block" id="collaboration">
+      <div class="container">
+        <div class="feature-block-inner reverse animate-on-scroll">
+          <div class="feature-block-content">
+            <div class="feature-block-badge">
+              <span class="badge badge-orange">Cross-Account Collaboration</span>
+            </div>
+            <h2 class="feature-block-title">The Industry&rsquo;s Only Native Account-to-Account System</h2>
+            <p class="feature-block-desc">
+              88% of industrial facilities outsource maintenance to contractors, vendors, or consultants.
+              Every other CMMS platform makes this painful and expensive. Maintor built Account-to-Account
+              invitations from the ground up.
+            </p>
+            <ul class="feature-list">
+              <li class="feature-list-item">
+                <div class="feature-list-check orange">&#10003;</div>
+                <span>Invite any external company on Maintor to collaborate on specific sites in your account</span>
+              </li>
+              <li class="feature-list-item">
+                <div class="feature-list-check orange">&#10003;</div>
+                <span>External admins assign their own employees to the invited sites with scoped role permissions</span>
+              </li>
+              <li class="feature-list-item">
+                <div class="feature-list-check orange">&#10003;</div>
+                <span>No credential sharing, no extra seat licenses billed to the host account</span>
+              </li>
+              <li class="feature-list-item">
+                <div class="feature-list-check orange">&#10003;</div>
+                <span>External engineers work from their own familiar Maintor account &mdash; same UX, different site context</span>
+              </li>
+              <li class="feature-list-item">
+                <div class="feature-list-check orange">&#10003;</div>
+                <span>Full audit trail of all external contributor actions on your site</span>
+              </li>
+            </ul>
+          </div>
+          <div class="feature-block-visual">
+            <div class="visual-label">Cost Savings Example</div>
+            <div class="visual-stat-large"><span>0</span> extra seats</div>
+            <div class="visual-stat-sub">
+              A plant with 12 external contractors using competitor platforms would pay for 12 additional seat licenses.
+              With Maintor&rsquo;s Account-to-Account system, those contractors use their own account &mdash; at no cost to you.
+            </div>
+            <div class="visual-tags">
+              <span class="visual-tag orange">Account-to-Account</span>
+              <span class="visual-tag orange">Site Delegation</span>
+              <span class="visual-tag">Scoped Roles</span>
+              <span class="visual-tag">Audit Trail</span>
+              <span class="visual-tag">No Credential Sharing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="cta">
+      <div class="container">
+        <div class="cta-inner animate-on-scroll">
+          <span class="badge badge-dark" style="margin-bottom: 20px;">Ready to get started?</span>
+          <h2 class="cta-title">See Maintor in action.</h2>
+          <p class="cta-subtitle">Request early access and we&rsquo;ll walk you through a live demo tailored to your industry.</p>
+          <div class="cta-actions">
+            <a href="mailto:hello@maintor.systems" class="btn btn-primary btn-lg">
+              Request Early Access
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="pricing.html" class="btn btn-secondary btn-lg">View Pricing</a>
+          </div>
+          <p class="cta-note">No credit card required &middot; Setup in under 30 minutes</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <div class="nav-logo-icon">M</div>
+            maintor<span class="nav-logo-dot">.</span>systems
+          </div>
+          <p class="footer-brand-desc">Cloud-native CMMS for mid-market and enterprise industrial operations.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Product</div>
+          <div class="footer-links">
+            <a href="features.html" class="footer-link">Features</a>
+            <a href="pricing.html" class="footer-link">Pricing</a>
+            <a href="index.html#comparison" class="footer-link">Compare</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Industries</div>
+          <div class="footer-links">
+            <a href="industries.html" class="footer-link">Recycling &amp; Waste</a>
+            <a href="industries.html" class="footer-link">Food &amp; Beverage</a>
+            <a href="industries.html" class="footer-link">Contractors</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <div class="footer-links">
+            <a href="mailto:hello@maintor.systems" class="footer-link">Contact</a>
+            <a href="#" class="footer-link">Security</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 Maintor.systems</div>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

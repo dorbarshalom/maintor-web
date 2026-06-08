@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing — Maintor Industrial CMMS</title>
+  <meta name="description" content="Transparent, straightforward pricing for Maintor. Designed to save industrial plants from paying seat licenses for every external contractor." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23FF5722'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='20' font-weight='800' font-family='sans-serif'>M</text></svg>" />
+
+  <style>
+    .pricing-section {
+      padding: var(--section-py) 0;
+      background: var(--slate);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 56px;
+    }
+    .pricing-card {
+      background: var(--white);
+      border-radius: var(--r-xl);
+      padding: 36px;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .pricing-card.featured {
+      background: var(--coal);
+      border: 1.5px solid rgba(255,87,34,0.3);
+      box-shadow: var(--shadow-orange);
+      transform: translateY(-8px);
+    }
+    .pricing-popular {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--grad-orange);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 5px 16px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .pricing-tier {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+    .pricing-tier.orange { color: var(--orange); }
+    .pricing-tier.blue { color: var(--blue); }
+    .pricing-tier.muted { color: var(--text-muted-light); }
+    .pricing-card.featured .pricing-tier { color: var(--orange); }
+    .pricing-name {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .pricing-card.featured .pricing-name { color: var(--white); }
+    .pricing-tagline {
+      font-size: 14px;
+      color: var(--text-muted-light);
+      margin-bottom: 28px;
+      line-height: 1.55;
+    }
+    .pricing-card.featured .pricing-tagline { color: var(--text-muted-dark); }
+    .pricing-price {
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .pricing-card.featured .pricing-price { border-bottom-color: rgba(255,255,255,0.08); }
+    .price-amount {
+      font-family: var(--font-heading);
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--text-on-light);
+    }
+    .pricing-card.featured .price-amount { color: var(--white); }
+    .price-period {
+      font-size: 14px;
+      color: var(--text-muted-light);
+      margin-top: 4px;
+    }
+    .pricing-card.featured .price-period { color: var(--text-muted-dark); }
+    .price-tbd {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-on-light);
+    }
+    .pricing-card.featured .price-tbd { color: var(--white); }
+    .pricing-features {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .pricing-feature {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 14px;
+    }
+    .pricing-card.featured .pricing-feature { color: rgba(255,255,255,0.75); }
+    .pricing-feature-check {
+      font-size: 12px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .pricing-feature-check.orange { color: var(--orange); }
+    .pricing-feature-check.blue { color: var(--blue); }
+    .pricing-feature-check.green { color: #4CAF50; }
+    .pricing-cta {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border-radius: var(--r-md);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 15px;
+      text-align: center;
+      transition: all var(--ease);
+      cursor: pointer;
+      border: none;
+    }
+    .pricing-cta.outline {
+      background: transparent;
+      color: var(--text-on-light);
+      border: 1.5px solid rgba(0,0,0,0.12);
+    }
+    .pricing-cta.outline:hover {
+      background: var(--slate);
+      border-color: rgba(0,0,0,0.2);
+    }
+    .pricing-cta.primary {
+      background: var(--grad-orange);
+      color: white;
+      box-shadow: var(--shadow-orange);
+    }
+    .pricing-cta.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(255,87,34,0.4);
+    }
+    .pricing-cta.secondary {
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .pricing-cta.secondary:hover {
+      background: rgba(255,255,255,0.14);
+    }
+
+    .contractor-saving {
+      background: var(--coal);
+      border-radius: var(--r-xl);
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contractor-saving::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,87,34,0.1) 0%, transparent 70%);
+    }
+    .saving-title { font-size: clamp(22px, 2.5vw, 32px); color: var(--white); margin-bottom: 12px; }
+    .saving-desc { font-size: 15px; color: var(--text-muted-dark); line-height: 1.7; }
+    .saving-example {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--r-lg);
+      padding: 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .saving-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 14px;
+    }
+    .saving-row:last-child { border-bottom: none; }
+    .saving-row-label { color: rgba(255,255,255,0.5); }
+    .saving-row-val { font-weight: 600; color: rgba(255,255,255,0.8); }
+    .saving-row-val.orange { color: var(--orange); }
+    .saving-row-val.green { color: #66BB6A; }
+    .saving-total {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .saving-total-label { font-size: 14px; font-weight: 700; color: var(--white); }
+    .saving-total-val {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 800;
+      color: #66BB6A;
+    }
+
+    .faq-section { padding: var(--section-py) 0; background: var(--white); }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 900px; margin: 0 auto; }
+    .faq-item { padding: 24px; background: var(--slate); border-radius: var(--r-lg); }
+    .faq-q { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .faq-a { font-size: 14px; color: var(--text-muted-light); line-height: 1.65; }
+
+    @media (max-width: 900px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card.featured { transform: none; }
+      .contractor-saving { grid-template-columns: 1fr; gap: 32px; }
+      .faq-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="main-nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <div class="nav-logo-icon">M</div>
+        maintor<span class="nav-logo-dot">.</span>systems
+      </a>
+      <ul class="nav-links">
+        <li><a href="features.html" class="nav-link">Features</a></li>
+        <li><a href="industries.html" class="nav-link">Industries</a></li>
+        <li><a href="pricing.html" class="nav-link" style="color: var(--white);">Pricing</a></li>
+        <li><a href="index.html#comparison" class="nav-link">Compare</a></li>
+      </ul>
+      <a href="index.html#cta" class="btn btn-primary nav-cta btn-sm">Request Early Access</a>
+      <button class="nav-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="features.html" class="nav-link">Features</a>
+      <a href="industries.html" class="nav-link">Industries</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="index.html#cta" class="btn btn-primary">Request Early Access</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner animate-on-scroll">
+        <span class="badge badge-orange" style="margin-bottom: 20px;">Transparent Pricing</span>
+        <h1 class="page-hero-title">Simple pricing.<br/>No contractor seat tax.</h1>
+        <p class="page-hero-subtitle">
+          Most CMMS platforms charge a full seat license for every external contractor you add.
+          Maintor&rsquo;s Account-to-Account system means your contractors use their own account &mdash;
+          and you only pay for your internal team.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+    <section class="pricing-section" id="plans">
+      <div class="container">
+
+        <div class="pricing-grid animate-on-scroll">
+
+          <!-- Starter -->
+          <div class="pricing-card">
+            <div class="pricing-tier blue">Starter</div>
+            <div class="pricing-name">Plant Essentials</div>
+            <div class="pricing-tagline">For single-site operations getting off spreadsheets and into a structured CMMS.</div>
+            <div class="pricing-price">
+              <div class="price-tbd">Contact Us</div>
+              <div class="price-period">Pricing tailored to your team size</div>
+            </div>
+            <div class="pricing-features">
+              <div class="pricing-feature">
+                <span class="pricing-feature-check blue">&#10003;</span>
+                <span>Up to 1 site</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check blue">&#10003;</span>
+                <span>Planned &amp; breakdown maintenance workflows</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check blue">&#10003;</span>
+                <span>Mobile technician app (unlimited technicians)</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check blue">&#10003;</span>
+                <span>WhatsApp breakdown alerts</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check blue">&#10003;</span>
+                <span>Photo-verified checklists</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check blue">&#10003;</span>
+                <span>Labor &amp; downtime tracking</span>
+              </div>
+              <div class="pricing-feature" style="color: var(--text-muted-light);">
+                <span style="color: rgba(0,0,0,0.2);">&#8212;</span>
+                <span>Account-to-Account contractor invites (not included)</span>
+              </div>
+            </div>
+            <a href="mailto:hello@maintor.systems?subject=Starter Plan Inquiry" class="pricing-cta outline">Get in Touch</a>
+          </div>
+
+          <!-- Pro (featured) -->
+          <div class="pricing-card featured">
+            <div class="pricing-popular">Most Popular</div>
+            <div class="pricing-tier">Professional</div>
+            <div class="pricing-name">Multi-Site Operations</div>
+            <div class="pricing-tagline">For mid-market industrial plants with multiple sites and external contractors.</div>
+            <div class="pricing-price">
+              <div class="price-tbd" style="color: var(--white);">Contact Us</div>
+              <div class="price-period">Pricing based on sites &amp; internal users</div>
+            </div>
+            <div class="pricing-features">
+              <div class="pricing-feature">
+                <span class="pricing-feature-check orange">&#10003;</span>
+                <span>Up to 10 sites</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check orange">&#10003;</span>
+                <span>Everything in Starter</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check orange">&#10003;</span>
+                <span><strong style="color: var(--orange);">Account-to-Account contractor invites</strong> &mdash; unlimited external collaborators at no extra cost</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check orange">&#10003;</span>
+                <span>Cross-site role management (Site Manager, Supervisor, Consultant)</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check orange">&#10003;</span>
+                <span>OEE and labor cost reporting dashboard</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check orange">&#10003;</span>
+                <span>Compliance audit trail export (PDF &amp; CSV)</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check orange">&#10003;</span>
+                <span>Priority onboarding &amp; support</span>
+              </div>
+            </div>
+            <a href="mailto:hello@maintor.systems?subject=Professional Plan Inquiry" class="pricing-cta primary">Request Early Access</a>
+          </div>
+
+          <!-- Enterprise -->
+          <div class="pricing-card">
+            <div class="pricing-tier muted">Enterprise</div>
+            <div class="pricing-name">Full Industrial Scale</div>
+            <div class="pricing-tagline">For large manufacturing groups with multiple plants, complex org structures, and SLA requirements.</div>
+            <div class="pricing-price">
+              <div class="price-tbd">Custom</div>
+              <div class="price-period">Tailored to your organization</div>
+            </div>
+            <div class="pricing-features">
+              <div class="pricing-feature">
+                <span class="pricing-feature-check green">&#10003;</span>
+                <span>Unlimited sites</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check green">&#10003;</span>
+                <span>Everything in Professional</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check green">&#10003;</span>
+                <span>Custom onboarding &amp; data migration</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check green">&#10003;</span>
+                <span>Dedicated account manager</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check green">&#10003;</span>
+                <span>SLA with uptime guarantees</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check green">&#10003;</span>
+                <span>SSO / SAML integration</span>
+              </div>
+              <div class="pricing-feature">
+                <span class="pricing-feature-check green">&#10003;</span>
+                <span>Custom compliance report templates</span>
+              </div>
+            </div>
+            <a href="mailto:hello@maintor.systems?subject=Enterprise Plan Inquiry" class="pricing-cta outline">Talk to Sales</a>
+          </div>
+
+        </div>
+
+        <!-- Contractor Savings Callout -->
+        <div class="contractor-saving animate-on-scroll">
+          <div style="position: relative; z-index: 1;">
+            <span class="badge badge-orange" style="margin-bottom: 16px;">The Contractor Advantage</span>
+            <h3 class="saving-title">Stop paying for your contractors&rsquo; seats.</h3>
+            <p class="saving-desc">
+              A plant working with 15 external contractors and consultants on other CMMS platforms
+              is paying for 15 additional seat licenses. On Maintor&rsquo;s Professional plan,
+              those contractors use their own Maintor account &mdash; and you pay nothing extra.
+            </p>
+          </div>
+          <div class="saving-example">
+            <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(255,255,255,0.35); margin-bottom: 16px;">Example: 15 External Contractors</div>
+            <div class="saving-row">
+              <span class="saving-row-label">Competitor (per contractor seat)</span>
+              <span class="saving-row-val orange">~$50/month &times; 15</span>
+            </div>
+            <div class="saving-row">
+              <span class="saving-row-label">Competitor annual contractor cost</span>
+              <span class="saving-row-val orange">$9,000/year</span>
+            </div>
+            <div class="saving-row">
+              <span class="saving-row-label">Maintor contractor seat cost</span>
+              <span class="saving-row-val green">$0 (Account-to-Account)</span>
+            </div>
+            <div class="saving-total">
+              <span class="saving-total-label">Your annual saving</span>
+              <span class="saving-total-val">$9,000+</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-grid animate-on-scroll">
+          <div class="faq-item">
+            <div class="faq-q">How does Account-to-Account pricing work exactly?</div>
+            <div class="faq-a">When you invite a contractor company to collaborate on your site, their users log in under <em>their own</em> Maintor account. You are only billed for your internal users. The contractor manages their own subscription separately.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">What counts as an &ldquo;internal user&rdquo;?</div>
+            <div class="faq-a">Any user in your Maintor account who was created by your organization &mdash; admins, supervisors, site managers, and your own technicians. External collaborators from other accounts are not counted.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Can I add more sites to my plan?</div>
+            <div class="faq-a">Yes. Sites can be added to your plan at any time. Contact us for custom multi-site pricing based on the number of facilities and expected user count per site.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Is there a free trial?</div>
+            <div class="faq-a">We&rsquo;re currently in early access. Request access and we&rsquo;ll set up a guided demo and a trial period tailored to your operation &mdash; no credit card required to start.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">What happens to my data if I cancel?</div>
+            <div class="faq-a">Your data is yours. We provide a full CSV/PDF export of all tickets, assets, audit logs, and reports before account closure &mdash; on request, at any time.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Do technicians need a paid seat?</div>
+            <div class="faq-a">Technician access is included in the per-site plan. We don&rsquo;t charge per-technician fees &mdash; your entire field team can use the mobile app under your plan.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="cta">
+      <div class="container">
+        <div class="cta-inner animate-on-scroll">
+          <span class="badge badge-dark" style="margin-bottom: 20px;">Early Access</span>
+          <h2 class="cta-title">Pricing designed to save you money<br/>from day one.</h2>
+          <p class="cta-subtitle">Talk to us about your plant size and contractor setup &mdash; we&rsquo;ll show you exactly what you&rsquo;d save.</p>
+          <div class="cta-actions">
+            <a href="mailto:hello@maintor.systems" class="btn btn-primary btn-lg">
+              Request Early Access
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="features.html" class="btn btn-secondary btn-lg">Explore Features</a>
+          </div>
+          <p class="cta-note">No credit card required &middot; Setup in under 30 minutes &middot; Cancel anytime</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <div class="nav-logo-icon">M</div>
+            maintor<span class="nav-logo-dot">.</span>systems
+          </div>
+          <p class="footer-brand-desc">Cloud-native CMMS for mid-market and enterprise industrial operations.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Product</div>
+          <div class="footer-links">
+            <a href="features.html" class="footer-link">Features</a>
+            <a href="pricing.html" class="footer-link">Pricing</a>
+            <a href="index.html#comparison" class="footer-link">Compare</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Industries</div>
+          <div class="footer-links">
+            <a href="industries.html" class="footer-link">Recycling &amp; Waste</a>
+            <a href="industries.html" class="footer-link">Food &amp; Beverage</a>
+            <a href="industries.html" class="footer-link">Contractors</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <div class="footer-links">
+            <a href="mailto:hello@maintor.systems" class="footer-link">Contact</a>
+            <a href="#" class="footer-link">Security</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 Maintor.systems</div>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
